@@ -1,7 +1,6 @@
-import java.awt.*;
-import javax.swing.*;
-import java.awt.event.*;
-
+import javax.swing.JFrame;
+import java.awt.event.KeyListener;
+import java.awt.event.KeyEvent;
 
 public class MyFrame extends JFrame implements KeyListener{
 	
@@ -43,7 +42,6 @@ public class MyFrame extends JFrame implements KeyListener{
 		MyFrame gameFrame = new MyFrame();
 
 		gameFrame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-    gameFrame.setBackground(Color.GRAY);
 		gameFrame.setSize(500, 500);
 		gameFrame.setVisible(true);
     gameFrame.getContentPane().add(gameFrame.drawing);
