@@ -20,14 +20,17 @@ public class MyFrame extends JFrame implements KeyListener{
            drawing.moveLeft();
        }
 
-       else if(e.getKeyCode() == KeyEvent.VK_UP){
-           drawing.moveUp();
-       }
+      else if(e.getKeyCode() == KeyEvent.VK_Z){
+           drawing.attack();
+      }
 
-       else if(e.getKeyCode() == KeyEvent.VK_DOWN){
-           drawing.moveDown();
-       }
-   	    
+      else if(e.getKeyCode() == KeyEvent.VK_A){
+           drawing.punch();
+      }
+      else if(e.getKeyCode() == KeyEvent.VK_S){
+           drawing.kick();
+      }
+
    }
 
    public void keyReleased(KeyEvent e){
