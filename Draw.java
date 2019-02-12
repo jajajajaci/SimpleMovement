@@ -100,6 +100,14 @@ public class Draw extends JComponent{
             e.printStackTrace();
           }
         }
+        for(int x=0; x<monsters.length; x++){
+          if(monsters[x]!=null){
+            if(monsters[x].contact){
+              monsters[x].life = monsters[x].life - 10;
+            }
+          }
+        }
+
       }
     });
     thread1.start();
@@ -128,6 +136,14 @@ public class Draw extends JComponent{
             e.printStackTrace();
           }
         }
+        for(int x=0; x<monsters.length; x++){
+          if(monsters[x]!=null){
+            if(monsters[x].contact){
+              monsters[x].life = monsters[x].life - 10;
+            }
+          }
+        }
+
       }
     });
     thread2.start();
@@ -157,6 +173,14 @@ public class Draw extends JComponent{
             e.printStackTrace();
           }
         }
+        for(int x=0; x<monsters.length; x++){
+          if(monsters[x]!=null){
+            if(monsters[x].contact){
+              monsters[x].life = monsters[x].life - 10;
+            }
+          }
+        }
+
       }
     });
     thread3.start();
@@ -186,6 +210,14 @@ public class Draw extends JComponent{
             e.printStackTrace();
           }
         }
+        for(int x=0; x<monsters.length; x++){
+          if(monsters[x]!=null){
+            if(monsters[x].contact){
+              monsters[x].life = monsters[x].life - 10;
+            }
+          }
+        }
+
       }
     });
     thread4.start();
@@ -215,6 +247,14 @@ public class Draw extends JComponent{
             e.printStackTrace();
           }
         }
+        for(int x=0; x<monsters.length; x++){
+          if(monsters[x]!=null){
+            if(monsters[x].contact){
+              monsters[x].life = monsters[x].life - 10;
+            }
+          }
+        }
+
       }
     });
     thread5.start();
@@ -257,7 +297,7 @@ public class Draw extends JComponent{
           e.printStackTrace();
       }
    }
-   
+
   public void reloadImage2(){
     state++;
 
@@ -294,18 +334,21 @@ public class Draw extends JComponent{
 		x = x - 5;
 		reloadImage2();
 		repaint();
+    checkCollision();
 	}
 
 	public void moveRight(){
 		x = x + 5;
 		reloadImage();
 		repaint();
+    checkCollision();
 	}
 
   public void attack(){
     attackAnimation();
     attackAnimation2();
     attackAnimation3();
+    checkCollision();
   }
 
   public void punch(){
@@ -316,6 +359,47 @@ public class Draw extends JComponent{
    kickAnimation();
   }
 
+  public void checkCollision(){
+    int xChecker = x + width;
+    int yChecker = y;
+
+    for(int x=0; x<monsters.length; x++){
+      boolean collideX = false;
+      boolean collideY = false;
+
+      if(monsters[x]!=null){
+        monsters[x].contact = false;
+
+        if(yChecker > monsters[x].yPos){
+          if(yChecker-monsters[x].yPos < monsters[x].height){
+            collideY = true;
+          }
+        }
+        else{
+          if(monsters[x].yPos - yChecker < monsters[x].height){
+            collideY = true;
+          }
+        }
+
+        if(xChecker > monsters[x].xPos){
+          if(xChecker-monsters[x].xPos < monsters[x].width){
+            collideX = true;
+          }
+        }
+        else{
+          if(monsters[x].xPos - xChecker < 5){
+            collideX = true;
+          }
+        }
+      }
+
+      if(collideX && collideY){
+        System.out.println("collision!");
+        monsters[x].contact = true;
+      }
+    }
+  }
+  
 
 
 
